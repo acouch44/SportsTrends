@@ -1,0 +1,129 @@
+name: nightly
+
+# Refresh the in-progress season, rebuild every chart bundle, draft captions for new data, commit
+# data/, build the site, render the link-preview PNGs into the build, and deploy it to Vercel.
+#
+# 10:30 UTC is after nflverse (09:03 UTC) and the sportsdataverse mirrors (~08:00 UTC) have run.
+# GitHub cron can lag or skip; a stats refresh tolerates that. Run it by hand from the Actions tab.
+#
+# Secrets: VERCEL_TOKEN, VERCEL_ORG_ID, VERCEL_PROJECT_ID (from `vercel link` in web/) and,
+# optionally, ANTHROPIC_API_KEY for captions.
+
+on:
+  schedule:
+    - cron: "30 10 * * *"
+  workflow_dispatch:
+    inputs:
+      league:
+        description: "league to refresh (blank = all wired-up leagues)"
+        type: string
+        default: ""
+      force_render:
+        description: "re-render every preview image even if unchanged"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: nightly
+  cancel-in-progress: false
+
+jobs:
+  refresh-and-deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    env:
+      PYTHONUTF8: "1"
+      ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+      VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+      VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+      LEAGUE_FLAG: ${{ inputs.league != '' && format('--league {0}', inputs.league) || '' }}
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.13"
+          cache: pip
+
+      - name: Install pipeline
+        run: |
+          pip install -e ".[dev]"
+          python -m playwright install --with-deps chromium
+
+      # Historical seasons never change: keep them between runs so a night only downloads the
+      # in-progress season. A new key every run lets the saved cache pick up the refreshed file.
+      - name: Restore raw data cache
+        uses: actions/cache@v6
+        with:
+          path: cache/raw
+          key: raw-${{ hashFiles('src/sportstrends/sources/*.py') }}-${{ github.run_id }}
+          restore-keys: |
+            raw-${{ hashFiles('src/sportstrends/sources/*.py') }}-
+            raw-
+
+      - name: Backfill anything missing, then refresh the current season
+        run: |
+          st backfill $LEAGUE_FLAG
+          st refresh $LEAGUE_FLAG
+
+      - name: Build chart bundles
+        run: st charts $LEAGUE_FLAG
+
+      - name: Draft captions for new data
+        if: env.ANTHROPIC_API_KEY != ''
+        run: st captions $LEAGUE_FLAG
+
+      - name: Commit data
+        id: commit
+        run: |
+          git config user.name "sportstrends-bot"
+          git config user.email "sportstrends-bot@users.noreply.github.com"
+          git add data schema
+          if git diff --cached --quiet; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            git commit -m "data: nightly refresh $(date -u +%Y-%m-%d)"
+            git push
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: web/package-lock.json
+
+      - name: Build site
+        working-directory: web
+        run: |
+          npm ci
+          npm i -g vercel@latest
+          vercel pull --yes --environment=production --token="${{ secrets.VERCEL_TOKEN }}"
+          vercel build --prod --token="${{ secrets.VERCEL_TOKEN }}"
+
+      - name: Render link-preview images into the build
+        run: |
+          python -m http.server 3000 -d web/.vercel/output/static >/dev/null 2>&1 &
+          sleep 2
+          st render --base http://localhost:3000 --out web/.vercel/output/static --formats og \
+            ${{ inputs.force_render && '--force' || '' }}
+          find web/.vercel/output/static/og -name '*.hash' -delete
+          ls -R web/.vercel/output/static/og | head -40
+
+      - name: Deploy to Vercel
+        working-directory: web
+        run: vercel deploy --prebuilt --prod --token="${{ secrets.VERCEL_TOKEN }}"
+
+      - name: Keep the previews as a run artifact
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: og-${{ github.run_number }}
+          path: web/.vercel/output/static/og
+          if-no-files-found: ignore
+          retention-days: 14

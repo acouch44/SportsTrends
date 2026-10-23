@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-10-23T20:13:01Z",
+  "charts": [
+    {
+      "id": "nfl/fourth-down-go-rate",
+      "league": "nfl",
+      "slug": "fourth-down-go-rate",
+      "kind": "small_multiples",
+      "title": "Going for it on 4th-and-short",
+      "subtitle": "Share of 4th-and-1 or 2 plays where the offense went for it instead of kicking. Quarters 1-3, score within one possession, regular season",
+      "hook": "On 4th-and-short with the game close, teams went for it 22% of the time in 1999. In 2026: 55%.",
+      "tags": [
+        "trend",
+        "analytics",
+        "fourth-down"
+      ],
+      "data_through": "2026-10-22",
+      "generated_at": "2026-10-23T19:59:13Z"
+    },
+    {
+      "id": "nfl/pass-rate-era",
+      "league": "nfl",
+      "slug": "pass-rate-era",
+      "kind": "line",
+      "title": "Run vs. pass: how often the NFL drops back",
+      "subtitle": "Share of offensive plays that were dropbacks (passes, sacks, scrambles), regular season",
+      "hook": "On early downs with the game in doubt, offenses dropped back 52% of the time in 1999. In 2026 it is 54%; the peak was 55% in 2020.",
+      "tags": [
+        "trend",
+        "offense",
+        "run-vs-pass"
+      ],
+      "data_through": "2026-10-22",
+      "generated_at": "2026-10-23T19:59:13Z"
+    },
+    {
+      "id": "nfl/kickoff-return-rate",
+      "league": "nfl",
+      "slug": "kickoff-return-rate",
+      "kind": "line",
+      "title": "The kickoff return is back",
+      "subtitle": "What happens on a regular-season kickoff, 1999 to today",
+      "hook": "In 1999, 87% of kickoffs were returned. By 2023 it was 23%. In 2026: 84%.",
+      "tags": [
+        "trend",
+        "special-teams",
+        "rule-change"
+      ],
+      "data_through": "2026-10-22",
+      "generated_at": "2026-10-23T19:59:13Z"
+    },
+    {
+      "id": "nfl/passing-yards-race",
+      "league": "nfl",
+      "slug": "passing-yards-race",
+      "kind": "race",
+      "title": "The passing-yards race, 1999 to today",
+      "subtitle": "Cumulative regular-season passing yards since 1999, top 12 after each season",
+      "hook": "T.Brady leads everyone who has thrown a pass since 1999 with 89,216 yards (through 2026).",
+      "tags": [
+        "race",
+        "quarterbacks",
+        "records"
+      ],
+      "data_through": "2026-10-22",
+      "generated_at": "2026-10-23T19:59:14Z"
+    },
+    {
+      "id": "nfl/wp-rollercoaster",
+      "league": "nfl",
+      "slug": "wp-rollercoaster",
+      "kind": "wp_story",
+      "title": "Win-probability rollercoaster of the week",
+      "subtitle": "Week 6, 2026: Pittsburgh Steelers at Tampa Bay Buccaneers (2026-10-18). Final PIT 26 - TB 19.",
+      "hook": "Week 6: Tampa Bay Buccaneers had a 91% chance of winning in the third quarter and lost. Final PIT 26 - TB 19.",
+      "tags": [
+        "game",
+        "win-probability",
+        "weekly"
+      ],
+      "data_through": "2026-10-18",
+      "generated_at": "2026-10-23T20:13:01Z"
+    }
+  ]
+}

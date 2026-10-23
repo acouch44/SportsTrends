@@ -1,0 +1,36 @@
+name: backfill
+
+# Manual only: download every season for a league into the Actions cache so the nightly job
+# never has to. Safe to re-run; historical files are skipped once present.
+
+on:
+  workflow_dispatch:
+    inputs:
+      league:
+        description: "league to backfill (blank = all wired-up leagues)"
+        type: string
+        default: ""
+
+jobs:
+  backfill:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    env:
+      PYTHONUTF8: "1"
+      LEAGUE_FLAG: ${{ inputs.league != '' && format('--league {0}', inputs.league) || '' }}
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.13"
+          cache: pip
+      - run: pip install -e .
+      - uses: actions/cache@v6
+        with:
+          path: cache/raw
+          key: raw-${{ hashFiles('src/sportstrends/sources/*.py') }}-${{ github.run_id }}
+          restore-keys: |
+            raw-${{ hashFiles('src/sportstrends/sources/*.py') }}-
+            raw-
+      - run: st backfill $LEAGUE_FLAG
+      - run: du -sh cache/raw/* && ls -la cache/raw/*

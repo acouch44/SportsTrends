@@ -1,0 +1,38 @@
+# python
+.venv/
+__pycache__/
+*.pyc
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+build/
+dist/
+
+# raw + tidy data never enter git; only data/ bundles do
+cache/
+
+# rendered social images are produced in CI into the built site
+web/public/og/*
+!web/public/og/.gitkeep
+web/public/square/
+web/public/portrait/
+web/public/story/
+renders/
+
+# node / next / vercel
+web/node_modules/
+web/.next/
+web/out/
+web/.vercel/
+web/next-env.d.ts
+web/*.tsbuildinfo
+video/node_modules/
+video/out/
+
+# secrets / local
+.env
+.env.*
+!.env.example
+*.log
+.DS_Store
+Thumbs.db

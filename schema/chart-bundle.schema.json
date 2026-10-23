@@ -1,0 +1,818 @@
+{
+  "$defs": {
+    "Annotation": {
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "enum": [
+            "vline",
+            "hline",
+            "point",
+            "range",
+            "text"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "x": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "X"
+        },
+        "y": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Y"
+        },
+        "x2": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "X2"
+        },
+        "label": {
+          "default": "",
+          "title": "Label",
+          "type": "string"
+        },
+        "note": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Note"
+        }
+      },
+      "required": [
+        "kind"
+      ],
+      "title": "Annotation",
+      "type": "object"
+    },
+    "Axis": {
+      "additionalProperties": false,
+      "properties": {
+        "field": {
+          "title": "Field",
+          "type": "string"
+        },
+        "type": {
+          "default": "quantitative",
+          "enum": [
+            "quantitative",
+            "temporal",
+            "ordinal",
+            "nominal"
+          ],
+          "title": "Type",
+          "type": "string"
+        },
+        "label": {
+          "default": "",
+          "title": "Label",
+          "type": "string"
+        },
+        "format": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Format"
+        }
+      },
+      "required": [
+        "field"
+      ],
+      "title": "Axis",
+      "type": "object"
+    },
+    "Domain": {
+      "additionalProperties": false,
+      "properties": {
+        "x": {
+          "anyOf": [
+            {
+              "items": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "string"
+                  }
+                ]
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "X"
+        },
+        "y": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "number"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Y"
+        }
+      },
+      "title": "Domain",
+      "type": "object"
+    },
+    "Encoding": {
+      "additionalProperties": false,
+      "properties": {
+        "x": {
+          "$ref": "#/$defs/Axis"
+        },
+        "y": {
+          "$ref": "#/$defs/Axis"
+        },
+        "series": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Axis"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "facet": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Axis"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "required": [
+        "x",
+        "y"
+      ],
+      "title": "Encoding",
+      "type": "object"
+    },
+    "Facet": {
+      "additionalProperties": false,
+      "properties": {
+        "key": {
+          "title": "Key",
+          "type": "string"
+        },
+        "label": {
+          "title": "Label",
+          "type": "string"
+        }
+      },
+      "required": [
+        "key",
+        "label"
+      ],
+      "title": "Facet",
+      "type": "object"
+    },
+    "Frame": {
+      "additionalProperties": false,
+      "properties": {
+        "t": {
+          "title": "T",
+          "type": "string"
+        },
+        "ranks": {
+          "items": {
+            "$ref": "#/$defs/RankItem"
+          },
+          "title": "Ranks",
+          "type": "array"
+        }
+      },
+      "required": [
+        "t",
+        "ranks"
+      ],
+      "title": "Frame",
+      "type": "object"
+    },
+    "Grid": {
+      "additionalProperties": false,
+      "properties": {
+        "shape": {
+          "default": "hex",
+          "enum": [
+            "hex",
+            "rect"
+          ],
+          "title": "Shape",
+          "type": "string"
+        },
+        "bin_width": {
+          "title": "Bin Width",
+          "type": "number"
+        },
+        "x_range": {
+          "items": {
+            "type": "number"
+          },
+          "title": "X Range",
+          "type": "array"
+        },
+        "y_range": {
+          "items": {
+            "type": "number"
+          },
+          "title": "Y Range",
+          "type": "array"
+        },
+        "court": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Court"
+        },
+        "value_label": {
+          "default": "",
+          "title": "Value Label",
+          "type": "string"
+        },
+        "cells": {
+          "items": {
+            "items": {
+              "type": "number"
+            },
+            "type": "array"
+          },
+          "title": "Cells",
+          "type": "array"
+        }
+      },
+      "required": [
+        "bin_width",
+        "x_range",
+        "y_range",
+        "cells"
+      ],
+      "title": "Grid",
+      "type": "object"
+    },
+    "KeyPlay": {
+      "additionalProperties": false,
+      "properties": {
+        "elapsed": {
+          "title": "Elapsed",
+          "type": "number"
+        },
+        "qtr": {
+          "title": "Qtr",
+          "type": "integer"
+        },
+        "clock": {
+          "title": "Clock",
+          "type": "string"
+        },
+        "wp_before": {
+          "title": "Wp Before",
+          "type": "number"
+        },
+        "wp_after": {
+          "title": "Wp After",
+          "type": "number"
+        },
+        "desc": {
+          "title": "Desc",
+          "type": "string"
+        },
+        "score": {
+          "title": "Score",
+          "type": "string"
+        }
+      },
+      "required": [
+        "elapsed",
+        "qtr",
+        "clock",
+        "wp_before",
+        "wp_after",
+        "desc",
+        "score"
+      ],
+      "title": "KeyPlay",
+      "type": "object"
+    },
+    "RankItem": {
+      "additionalProperties": false,
+      "properties": {
+        "key": {
+          "title": "Key",
+          "type": "string"
+        },
+        "label": {
+          "title": "Label",
+          "type": "string"
+        },
+        "value": {
+          "title": "Value",
+          "type": "number"
+        },
+        "color": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Color"
+        },
+        "group": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Group"
+        }
+      },
+      "required": [
+        "key",
+        "label",
+        "value"
+      ],
+      "title": "RankItem",
+      "type": "object"
+    },
+    "Series": {
+      "additionalProperties": false,
+      "properties": {
+        "key": {
+          "title": "Key",
+          "type": "string"
+        },
+        "label": {
+          "title": "Label",
+          "type": "string"
+        },
+        "color": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Color"
+        },
+        "emphasis": {
+          "default": false,
+          "title": "Emphasis",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "key",
+        "label"
+      ],
+      "title": "Series",
+      "type": "object"
+    },
+    "Social": {
+      "additionalProperties": false,
+      "properties": {
+        "hook": {
+          "default": "",
+          "title": "Hook",
+          "type": "string"
+        },
+        "alt_text": {
+          "default": "",
+          "title": "Alt Text",
+          "type": "string"
+        },
+        "linkedin": {
+          "default": "",
+          "title": "Linkedin",
+          "type": "string"
+        },
+        "instagram": {
+          "default": "",
+          "title": "Instagram",
+          "type": "string"
+        },
+        "tiktok": {
+          "default": "",
+          "title": "Tiktok",
+          "type": "string"
+        },
+        "x": {
+          "default": "",
+          "title": "X",
+          "type": "string"
+        },
+        "hashtags": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Hashtags",
+          "type": "array"
+        },
+        "reviewed": {
+          "default": false,
+          "title": "Reviewed",
+          "type": "boolean"
+        },
+        "generated_for": {
+          "default": "",
+          "title": "Generated For",
+          "type": "string"
+        }
+      },
+      "title": "Social",
+      "type": "object"
+    },
+    "Source": {
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "url": {
+          "title": "Url",
+          "type": "string"
+        },
+        "license": {
+          "default": "",
+          "title": "License",
+          "type": "string"
+        },
+        "attribution": {
+          "default": "",
+          "title": "Attribution",
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "url"
+      ],
+      "title": "Source",
+      "type": "object"
+    },
+    "Story": {
+      "additionalProperties": false,
+      "properties": {
+        "game_id": {
+          "title": "Game Id",
+          "type": "string"
+        },
+        "season": {
+          "title": "Season",
+          "type": "integer"
+        },
+        "week": {
+          "title": "Week",
+          "type": "integer"
+        },
+        "date": {
+          "title": "Date",
+          "type": "string"
+        },
+        "home": {
+          "title": "Home",
+          "type": "string"
+        },
+        "away": {
+          "title": "Away",
+          "type": "string"
+        },
+        "home_name": {
+          "default": "",
+          "title": "Home Name",
+          "type": "string"
+        },
+        "away_name": {
+          "default": "",
+          "title": "Away Name",
+          "type": "string"
+        },
+        "home_color": {
+          "default": "#444444",
+          "title": "Home Color",
+          "type": "string"
+        },
+        "away_color": {
+          "default": "#999999",
+          "title": "Away Color",
+          "type": "string"
+        },
+        "final": {
+          "default": "",
+          "title": "Final",
+          "type": "string"
+        },
+        "excitement": {
+          "default": 0.0,
+          "title": "Excitement",
+          "type": "number"
+        },
+        "key_plays": {
+          "items": {
+            "$ref": "#/$defs/KeyPlay"
+          },
+          "title": "Key Plays",
+          "type": "array"
+        }
+      },
+      "required": [
+        "game_id",
+        "season",
+        "week",
+        "date",
+        "home",
+        "away"
+      ],
+      "title": "Story",
+      "type": "object"
+    },
+    "Table": {
+      "additionalProperties": false,
+      "properties": {
+        "columns": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Columns",
+          "type": "array"
+        },
+        "rows": {
+          "items": {
+            "items": {},
+            "type": "array"
+          },
+          "title": "Rows",
+          "type": "array"
+        }
+      },
+      "required": [
+        "columns",
+        "rows"
+      ],
+      "title": "Table",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "default": 1,
+      "title": "Schema Version",
+      "type": "integer"
+    },
+    "id": {
+      "title": "Id",
+      "type": "string"
+    },
+    "league": {
+      "title": "League",
+      "type": "string"
+    },
+    "slug": {
+      "title": "Slug",
+      "type": "string"
+    },
+    "kind": {
+      "enum": [
+        "line",
+        "area",
+        "heatmap",
+        "race",
+        "small_multiples",
+        "wp_story"
+      ],
+      "title": "Kind",
+      "type": "string"
+    },
+    "title": {
+      "title": "Title",
+      "type": "string"
+    },
+    "subtitle": {
+      "default": "",
+      "title": "Subtitle",
+      "type": "string"
+    },
+    "hook": {
+      "default": "",
+      "title": "Hook",
+      "type": "string"
+    },
+    "tags": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Tags",
+      "type": "array"
+    },
+    "source": {
+      "$ref": "#/$defs/Source"
+    },
+    "generated_at": {
+      "title": "Generated At",
+      "type": "string"
+    },
+    "data_through": {
+      "title": "Data Through",
+      "type": "string"
+    },
+    "code_version": {
+      "default": "",
+      "title": "Code Version",
+      "type": "string"
+    },
+    "encoding": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/Encoding"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "domain": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/Domain"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "series": {
+      "items": {
+        "$ref": "#/$defs/Series"
+      },
+      "title": "Series",
+      "type": "array"
+    },
+    "annotations": {
+      "items": {
+        "$ref": "#/$defs/Annotation"
+      },
+      "title": "Annotations",
+      "type": "array"
+    },
+    "data": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/Table"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "grid": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/Grid"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "frames": {
+      "anyOf": [
+        {
+          "items": {
+            "$ref": "#/$defs/Frame"
+          },
+          "type": "array"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Frames"
+    },
+    "facets": {
+      "anyOf": [
+        {
+          "items": {
+            "$ref": "#/$defs/Facet"
+          },
+          "type": "array"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Facets"
+    },
+    "story": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/Story"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "social": {
+      "$ref": "#/$defs/Social"
+    },
+    "summary": {
+      "additionalProperties": true,
+      "title": "Summary",
+      "type": "object"
+    }
+  },
+  "required": [
+    "id",
+    "league",
+    "slug",
+    "kind",
+    "title",
+    "source",
+    "generated_at",
+    "data_through"
+  ],
+  "title": "ChartBundle",
+  "type": "object"
+}
