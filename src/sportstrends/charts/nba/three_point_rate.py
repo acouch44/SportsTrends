@@ -37,8 +37,9 @@ def compute(ctx: Context) -> dict:
     # the hook starts the story in 1997-98, the first season back at 23'9" after three short-line years
     base = df[df["season"] == 1998].iloc[0] if (df["season"] == 1998).any() else first
     hook = (
-        f"In {nba.season_label(int(base.season))}, {base.rate:.0%} of NBA shots were threes, about 1 in "
-        f"{round(1 / base.rate)}. In {nba.season_label(last_s)}: {last.rate:.0%}, about {round(10 * last.rate)} in 10."
+        f"In {nba.season_label(int(base.season))}, {base.rate:.0%} of NBA shots were threes, "
+        f"about 1 in {round(1 / base.rate)}. In {nba.season_label(last_s)}: {last.rate:.0%}, "
+        f"about {round(10 * last.rate)} in 10."
     )
     annotations = [
         Annotation(kind="vline", x=1998, label="Line moved back to 23 ft 9 in"),
