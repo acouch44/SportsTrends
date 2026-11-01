@@ -15,8 +15,6 @@ export interface ChartProps {
   mode?: Mode;
   width?: number;
   height?: number;
-  /** restrict a faceted bundle to one facet key */
-  facet?: string;
   /** race bars: show this frame instead of running their own clock */
   frame?: number;
   /** called once the marks are in the DOM (the render route waits for it) */

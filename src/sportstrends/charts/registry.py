@@ -15,6 +15,7 @@ from __future__ import annotations
 
 import importlib
 import json
+import logging
 import pkgutil
 import subprocess
 from collections.abc import Callable
@@ -24,9 +25,12 @@ from pathlib import Path
 from typing import Any
 
 import duckdb
+from pydantic import ValidationError
 
 from ..bundle import ChartBundle, Kind, Registry, RegistryEntry, Source
 from ..config import CHARTS_DIR, REGISTRY_PATH, ROOT
+
+log = logging.getLogger(__name__)
 
 
 @dataclass(frozen=True)
@@ -110,9 +114,14 @@ def bundle_path(chart_id: str) -> Path:
 
 
 def load_bundle(path: Path) -> ChartBundle | None:
+    """The committed bundle, or None if there is none or it predates a schema change."""
     if not path.exists():
         return None
-    return ChartBundle.model_validate_json(path.read_text(encoding="utf-8"))
+    try:
+        return ChartBundle.model_validate_json(path.read_text(encoding="utf-8"))
+    except ValidationError:
+        log.warning("%s no longer matches the bundle schema; building it fresh", path.name)
+        return None
 
 
 def build(cdef: ChartDef, ctx: Context) -> ChartBundle:
@@ -176,9 +185,12 @@ def write_registry() -> Path:
     entries.sort(key=lambda e: (e.league, e.title))
     stamp = now_iso()
     if REGISTRY_PATH.exists():
-        prev = Registry.model_validate_json(REGISTRY_PATH.read_text(encoding="utf-8"))
-        if prev.charts == entries:
-            stamp = prev.generated_at
+        try:
+            prev = Registry.model_validate_json(REGISTRY_PATH.read_text(encoding="utf-8"))
+            if prev.charts == entries:
+                stamp = prev.generated_at
+        except ValidationError:
+            pass  # schema changed since the last run: a fresh stamp is right
     reg = Registry(generated_at=stamp, charts=entries)
     REGISTRY_PATH.parent.mkdir(parents=True, exist_ok=True)
     REGISTRY_PATH.write_text(reg.model_dump_json(indent=2) + "\n", encoding="utf-8", newline="\n")
@@ -210,16 +222,11 @@ def summarize(b: ChartBundle) -> dict[str, Any]:
             if b.encoding.series and b.encoding.series.field in cols
             else None
         )
-        fi = (
-            cols.index(b.encoding.facet.field)
-            if b.encoding.facet and b.encoding.facet.field in cols
-            else None
-        )
         groups: dict[str, list[tuple[Any, float]]] = {}
         for row in b.data.rows:
             if row[yi] is None:
                 continue
-            key = " / ".join(str(row[i]) for i in (fi, si) if i is not None) or "value"
+            key = str(row[si]) if si is not None else "value"
             groups.setdefault(key, []).append((row[xi], float(row[yi])))
         out: dict[str, Any] = {}
         for key, pts in groups.items():

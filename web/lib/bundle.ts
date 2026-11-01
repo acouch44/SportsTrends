@@ -4,7 +4,7 @@
  */
 import { z } from "zod";
 
-export const Kind = z.enum(["line", "area", "heatmap", "race", "small_multiples", "wp_story"]);
+export const Kind = z.enum(["line", "area", "heatmap", "race", "wp_story"]);
 export type Kind = z.infer<typeof Kind>;
 
 const Axis = z.object({
@@ -18,7 +18,6 @@ const Encoding = z.object({
   x: Axis,
   y: Axis,
   series: Axis.optional(),
-  facet: Axis.optional(),
 });
 
 const Domain = z.object({
@@ -90,8 +89,6 @@ export type RankItem = z.infer<typeof RankItem>;
 const Frame = z.object({ t: z.string(), ranks: z.array(RankItem) });
 export type Frame = z.infer<typeof Frame>;
 
-const Facet = z.object({ key: z.string(), label: z.string() });
-
 const KeyPlay = z.object({
   elapsed: z.number(),
   qtr: z.number(),
@@ -141,7 +138,6 @@ export const ChartBundle = z.object({
   data: Table.optional(),
   grid: Grid.optional(),
   frames: z.array(Frame).optional(),
-  facets: z.array(Facet).optional(),
   story: Story.optional(),
   social: Social.default(() => Social.parse({})),
   summary: z.record(z.string(), z.unknown()).default({}),

@@ -14,16 +14,14 @@ interface Row {
   s: string;
 }
 
-export function trendRows(b: ChartBundle, facet?: string): Row[] {
+export function trendRows(b: ChartBundle): Row[] {
   if (!b.data || !b.encoding) return [];
   const t = b.data;
   const xi = col(t, b.encoding.x.field);
   const yi = col(t, b.encoding.y.field);
   const si = b.encoding.series ? t.columns.indexOf(b.encoding.series.field) : -1;
-  const fi = b.encoding.facet ? t.columns.indexOf(b.encoding.facet.field) : -1;
   const out: Row[] = [];
   for (const r of t.rows) {
-    if (fi >= 0 && facet !== undefined && r[fi] !== facet) continue;
     const y = r[yi];
     if (y == null) continue;
     out.push({ x: Number(r[xi]), y: Number(y), s: si >= 0 ? String(r[si]) : "value" });
@@ -33,7 +31,7 @@ export function trendRows(b: ChartBundle, facet?: string): Row[] {
 
 /** Line and area charts: multi-series over a numeric x (seasons), with annotations. */
 export default function TrendLine(props: ChartProps) {
-  const { bundle, variant = "full", facet, onReady } = props;
+  const { bundle, variant = "full", onReady } = props;
   const box = useRef<HTMLDivElement>(null);
   const mode = useMode(props.mode);
   const { width, height } = useSize(box, { width: props.width, height: props.height ?? 420 });
@@ -43,7 +41,7 @@ export default function TrendLine(props: ChartProps) {
     if (!el || !width || !height || !bundle.encoding) return;
     const t = theme(mode);
     const enc = bundle.encoding;
-    const rows = trendRows(bundle, facet);
+    const rows = trendRows(bundle);
     const defs = bundle.series.length
       ? bundle.series
       : [{ key: "value", label: bundle.title, color: undefined, emphasis: true }];
@@ -248,7 +246,7 @@ export default function TrendLine(props: ChartProps) {
     return () => {
       plot.remove();
     };
-  }, [bundle, facet, width, height, mode, variant, onReady]);
+  }, [bundle, width, height, mode, variant, onReady]);
 
   return <div ref={box} className="st-plot" style={{ width: props.width, height }} />;
 }

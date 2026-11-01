@@ -185,17 +185,6 @@
             }
           ],
           "default": null
-        },
-        "facet": {
-          "anyOf": [
-            {
-              "$ref": "#/$defs/Axis"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null
         }
       },
       "required": [
@@ -203,25 +192,6 @@
         "y"
       ],
       "title": "Encoding",
-      "type": "object"
-    },
-    "Facet": {
-      "additionalProperties": false,
-      "properties": {
-        "key": {
-          "title": "Key",
-          "type": "string"
-        },
-        "label": {
-          "title": "Label",
-          "type": "string"
-        }
-      },
-      "required": [
-        "key",
-        "label"
-      ],
-      "title": "Facet",
       "type": "object"
     },
     "Frame": {
@@ -652,7 +622,6 @@
         "area",
         "heatmap",
         "race",
-        "small_multiples",
         "wp_story"
       ],
       "title": "Kind",
@@ -767,21 +736,6 @@
       ],
       "default": null,
       "title": "Frames"
-    },
-    "facets": {
-      "anyOf": [
-        {
-          "items": {
-            "$ref": "#/$defs/Facet"
-          },
-          "type": "array"
-        },
-        {
-          "type": "null"
-        }
-      ],
-      "default": null,
-      "title": "Facets"
     },
     "story": {
       "anyOf": [

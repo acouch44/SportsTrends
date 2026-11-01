@@ -11,7 +11,7 @@ from typing import Any, Literal
 
 from pydantic import BaseModel, ConfigDict, Field
 
-Kind = Literal["line", "area", "heatmap", "race", "small_multiples", "wp_story"]
+Kind = Literal["line", "area", "heatmap", "race", "wp_story"]
 
 
 class Strict(BaseModel):
@@ -29,7 +29,6 @@ class Encoding(Strict):
     x: Axis
     y: Axis
     series: Axis | None = None
-    facet: Axis | None = None
 
 
 class Domain(Strict):
@@ -100,11 +99,6 @@ class Frame(Strict):
     ranks: list[RankItem]
 
 
-class Facet(Strict):
-    key: str
-    label: str
-
-
 class KeyPlay(Strict):
     elapsed: float  # seconds since kickoff
     qtr: int
@@ -152,7 +146,6 @@ class ChartBundle(Strict):
     data: Table | None = None
     grid: Grid | None = None
     frames: list[Frame] | None = None
-    facets: list[Facet] | None = None
     story: Story | None = None
     social: Social = Field(default_factory=Social)
     summary: dict[str, Any] = Field(default_factory=dict)  # compact facts for captions

@@ -76,11 +76,8 @@ def draft(bundle_json: dict) -> Captions | None:
     payload["source"] = bundle_json.get("source", {}).get("attribution")
     payload["url"] = f"{SITE_URL}/{bundle_json['league']}/{bundle_json['slug']}/"
     series_labels = {s["key"]: s["label"] for s in bundle_json.get("series", [])}
-    facet_labels = {f["key"]: f["label"] for f in bundle_json.get("facets") or []}
     if series_labels:
         payload["series_labels"] = series_labels
-    if facet_labels:
-        payload["facet_labels"] = facet_labels
 
     response = client.beta.messages.parse(
         model=MODEL,

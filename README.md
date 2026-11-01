@@ -22,7 +22,7 @@ Python pipeline (src/sportstrends)                      Next.js static site (web
 |---|---|
 | `/nfl/pass-rate-era/` | Dropback rate since 1999: every play, game-in-doubt, early downs |
 | `/nfl/kickoff-return-rate/` | Returned / touchback / fair-catch share of kickoffs, with every rule change |
-| `/nfl/fourth-down-go-rate/` | 4th-and-short go-for-it rate by field zone |
+| `/nfl/fourth-down-go-rate/` | 4th-and-short go-for-it rate, league-wide and from a team's own side of midfield |
 | `/nfl/wp-rollercoaster/` | The highest-swing game of the last completed week (auto-updates) |
 | `/nfl/passing-yards-race/` | Cumulative passing yards since 1999 as a bar-chart race |
 
@@ -79,7 +79,7 @@ def compute(ctx: Context) -> dict:
                 data_through=nfl.data_through(ctx.con))
 ```
 
-`kind` picks the React component (`line`, `area`, `small_multiples`, `race`, `wp_story`,
+`kind` picks the React component (`line`, `area`, `race`, `wp_story`,
 `heatmap`); run `st charts --chart my-chart` and the page, gallery tile, render routes and
 sitemap entry appear on the next build. `tests/test_charts.py` builds every registered chart
 against a synthetic fixture.

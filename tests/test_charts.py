@@ -24,17 +24,12 @@ def test_chart_builds_valid_bundle(cdef, ctx, out_dirs):
     assert path.stat().st_size < MAX_BUNDLE_BYTES
     reloaded = ChartBundle.model_validate_json(path.read_text(encoding="utf-8"))
     assert reloaded.kind == bundle.kind
-    if bundle.kind in ("line", "area", "small_multiples", "wp_story"):
+    if bundle.kind in ("line", "area", "wp_story"):
         assert bundle.data and bundle.encoding
         assert bundle.encoding.x.field in bundle.data.columns
         assert bundle.encoding.y.field in bundle.data.columns
     if bundle.kind == "race":
         assert bundle.frames and all(f.ranks for f in bundle.frames)
-    if bundle.kind == "small_multiples":
-        assert bundle.facets and bundle.encoding and bundle.encoding.facet
-        facet_keys = {f.key for f in bundle.facets}
-        fi = bundle.data.columns.index(bundle.encoding.facet.field)
-        assert {r[fi] for r in bundle.data.rows} <= facet_keys
     if bundle.kind == "wp_story":
         assert bundle.story and bundle.story.key_plays
 
