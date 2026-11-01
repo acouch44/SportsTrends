@@ -19,12 +19,12 @@ import typer
 
 from . import config
 from .charts import registry
-from .sources import nfl
+from .sources import nba, nfl
 
 app = typer.Typer(no_args_is_help=True, add_completion=False, help=__doc__)
 log = logging.getLogger("st")
 
-LEAGUE_MODULES = {"nfl": nfl}
+LEAGUE_MODULES = {"nfl": nfl, "nba": nba}
 
 LeagueOpt = Annotated[str | None, typer.Option("--league", "-l", help="nfl | nba | nhl | mlb (default: all)")]
 ChartOpt = Annotated[

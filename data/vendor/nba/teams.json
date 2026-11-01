@@ -1,0 +1,152 @@
+{
+ "ATL": {
+  "name": "Atlanta Hawks",
+  "color": "#c8102e",
+  "color2": "#fdb927"
+ },
+ "BKN": {
+  "name": "Brooklyn Nets",
+  "color": "#000000",
+  "color2": "#ffffff"
+ },
+ "BOS": {
+  "name": "Boston Celtics",
+  "color": "#008348",
+  "color2": "#ffffff"
+ },
+ "CHA": {
+  "name": "Charlotte Hornets",
+  "color": "#008ca8",
+  "color2": "#1d1060"
+ },
+ "CHI": {
+  "name": "Chicago Bulls",
+  "color": "#ce1141",
+  "color2": "#000000"
+ },
+ "CLE": {
+  "name": "Cleveland Cavaliers",
+  "color": "#860038",
+  "color2": "#bc945c"
+ },
+ "DAL": {
+  "name": "Dallas Mavericks",
+  "color": "#0064b1",
+  "color2": "#bbc4ca"
+ },
+ "DEN": {
+  "name": "Denver Nuggets",
+  "color": "#0e2240",
+  "color2": "#fec524"
+ },
+ "DET": {
+  "name": "Detroit Pistons",
+  "color": "#1d428a",
+  "color2": "#c8102e"
+ },
+ "GSW": {
+  "name": "Golden State Warriors",
+  "color": "#fdb927",
+  "color2": "#1d428a"
+ },
+ "HOU": {
+  "name": "Houston Rockets",
+  "color": "#ce0e2d",
+  "color2": "#000000"
+ },
+ "IND": {
+  "name": "Indiana Pacers",
+  "color": "#0c2340",
+  "color2": "#ffd520"
+ },
+ "LAC": {
+  "name": "LA Clippers",
+  "color": "#12173f",
+  "color2": "#c8102e"
+ },
+ "LAL": {
+  "name": "Los Angeles Lakers",
+  "color": "#552583",
+  "color2": "#fdb927"
+ },
+ "MEM": {
+  "name": "Memphis Grizzlies",
+  "color": "#5d76a9",
+  "color2": "#12173f"
+ },
+ "MIA": {
+  "name": "Miami Heat",
+  "color": "#98002e",
+  "color2": "#000000"
+ },
+ "MIL": {
+  "name": "Milwaukee Bucks",
+  "color": "#00471b",
+  "color2": "#eee1c6"
+ },
+ "MIN": {
+  "name": "Minnesota Timberwolves",
+  "color": "#266092",
+  "color2": "#79bc43"
+ },
+ "NOP": {
+  "name": "New Orleans Pelicans",
+  "color": "#0a2240",
+  "color2": "#b4975a"
+ },
+ "NYK": {
+  "name": "New York Knicks",
+  "color": "#1d428a",
+  "color2": "#f58426"
+ },
+ "OKC": {
+  "name": "Oklahoma City Thunder",
+  "color": "#007ac1",
+  "color2": "#ef3b24"
+ },
+ "ORL": {
+  "name": "Orlando Magic",
+  "color": "#0150b5",
+  "color2": "#9ca0a3"
+ },
+ "PHI": {
+  "name": "Philadelphia 76ers",
+  "color": "#1d428a",
+  "color2": "#e01234"
+ },
+ "PHX": {
+  "name": "Phoenix Suns",
+  "color": "#29127a",
+  "color2": "#e56020"
+ },
+ "POR": {
+  "name": "Portland Trail Blazers",
+  "color": "#e03a3e",
+  "color2": "#000000"
+ },
+ "SAC": {
+  "name": "Sacramento Kings",
+  "color": "#5a2d81",
+  "color2": "#6a7a82"
+ },
+ "SAS": {
+  "name": "San Antonio Spurs",
+  "color": "#000000",
+  "color2": "#c4ced4"
+ },
+ "TOR": {
+  "name": "Toronto Raptors",
+  "color": "#d91244",
+  "color2": "#000000"
+ },
+ "UTA": {
+  "name": "Utah Jazz",
+  "color": "#4e008e",
+  "color2": "#79a3dc"
+ },
+ "WAS": {
+  "name": "Washington Wizards",
+  "color": "#e31837",
+  "color2": "#002b5c"
+ }
+}

@@ -2,7 +2,7 @@
 
 Shareable sports data visualizations: multi-decade league trends (run vs pass, the kickoff
 return's comeback, the 4th-down revolution) down to the wildest game of the week, starting with
-the NFL and built to take the NBA, NHL and MLB next.
+the NFL and NBA and built to take the NHL and MLB next.
 
 Every chart has its own link with a preview image sized for LinkedIn, Facebook, X and Slack,
 draft captions per platform, and a data-table twin.
@@ -25,6 +25,9 @@ Python pipeline (src/sportstrends)                      Next.js static site (web
 | `/nfl/fourth-down-go-rate/` | 4th-and-short go-for-it rate, league-wide and from a team's own side of midfield |
 | `/nfl/wp-rollercoaster/` | The highest-swing game of the last completed week (auto-updates) |
 | `/nfl/passing-yards-race/` | Cumulative passing yards since 1999 as a bar-chart race |
+| `/nba/three-point-rate/` | Share of NBA shots taken from three since 1996-97 |
+| `/nba/shot-chart-shift/` | Half-court heat map of where shots moved: the last three seasons against the late 1990s |
+| `/nba/three-pointers-race/` | Cumulative threes made since 1996-97 as a bar-chart race |
 
 ## Run it locally
 

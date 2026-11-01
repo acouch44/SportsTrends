@@ -18,6 +18,12 @@ export const SEQUENTIAL: Record<Mode, string[]> = {
   dark: ["#184f95", "#1c5cab", "#256abf", "#3987e5", "#6da7ec", "#9ec5f4", "#cde2fb"],
 };
 
+/** Two-hue diverging ramp, cool (fewer) through a neutral grey to warm (more), for change maps. */
+export const DIVERGING: Record<Mode, string[]> = {
+  light: ["#184f95", "#3987e5", "#9ec5f4", "#dcdfdb", "#f6b89a", "#eb6834", "#a63a12"],
+  dark: ["#6da7ec", "#3987e5", "#256abf", "#34435a", "#a84a1c", "#d95926", "#f0906a"],
+};
+
 export interface Chrome {
   page: string;
   surface: string;
@@ -59,7 +65,7 @@ export const CHROME: Record<Mode, Chrome> = {
 };
 
 export function theme(mode: Mode) {
-  return { mode, ...CHROME[mode], series: SERIES[mode], sequential: SEQUENTIAL[mode] };
+  return { mode, ...CHROME[mode], series: SERIES[mode], sequential: SEQUENTIAL[mode], diverging: DIVERGING[mode] };
 }
 export type Theme = ReturnType<typeof theme>;
 

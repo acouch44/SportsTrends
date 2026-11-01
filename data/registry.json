@@ -1,7 +1,56 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-01T10:39:42Z",
+  "generated_at": "2026-11-01T10:54:33Z",
   "charts": [
+    {
+      "id": "nba/three-pointers-race",
+      "league": "nba",
+      "slug": "three-pointers-race",
+      "kind": "race",
+      "title": "The three-point race, 1996-97 to today",
+      "subtitle": "Cumulative regular-season threes made since 1996-97, top 12 after each season",
+      "hook": "Stephen Curry has made 4,270 regular-season threes since 1996-97, more than anyone else over that span (through 2026-27).",
+      "tags": [
+        "race",
+        "three-point",
+        "records"
+      ],
+      "data_through": "2026-10-31",
+      "generated_at": "2026-11-01T10:54:33Z"
+    },
+    {
+      "id": "nba/three-point-rate",
+      "league": "nba",
+      "slug": "three-point-rate",
+      "kind": "line",
+      "title": "The three-point takeover",
+      "subtitle": "Share of all NBA field-goal attempts taken from behind the arc, regular season",
+      "hook": "In 1996-97, 21% of NBA shots were threes, about 1 in 5. In 2026-27: 42%.",
+      "tags": [
+        "trend",
+        "three-point",
+        "shooting"
+      ],
+      "data_through": "2026-10-31",
+      "generated_at": "2026-11-01T10:49:39Z"
+    },
+    {
+      "id": "nba/shot-chart-shift",
+      "league": "nba",
+      "slug": "shot-chart-shift",
+      "kind": "heatmap",
+      "title": "Where the midrange went",
+      "subtitle": "Change in the share of all shots taken from each spot on the floor: the last three seasons against 1997-98 to 2000-01. Regular season, shots inside 4 ft of the rim left out, hexagons two feet wide",
+      "hook": "From 1997-98 to 2000-01, 39% of NBA shots were midrange twos and 17% were threes. From 2024-25 to 2026-27: 15% midrange, 42% threes.",
+      "tags": [
+        "heatmap",
+        "shot-chart",
+        "midrange",
+        "three-point"
+      ],
+      "data_through": "2026-10-31",
+      "generated_at": "2026-11-01T10:54:33Z"
+    },
     {
       "id": "nfl/fourth-down-go-rate",
       "league": "nfl",

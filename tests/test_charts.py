@@ -15,7 +15,8 @@ def _defs():
 
 
 @pytest.mark.parametrize("cdef", _defs(), ids=lambda d: d.spec.id)
-def test_chart_builds_valid_bundle(cdef, ctx, out_dirs):
+def test_chart_builds_valid_bundle(cdef, make_ctx, out_dirs):
+    ctx = make_ctx(cdef.spec.league)
     bundle = registry.build(cdef, ctx)
     assert bundle.id == cdef.spec.id
     assert bundle.data_through
@@ -30,11 +31,14 @@ def test_chart_builds_valid_bundle(cdef, ctx, out_dirs):
         assert bundle.encoding.y.field in bundle.data.columns
     if bundle.kind == "race":
         assert bundle.frames and all(f.ranks for f in bundle.frames)
+    if bundle.kind == "heatmap":
+        assert bundle.grid and bundle.grid.cells and all(len(c) == 4 for c in bundle.grid.cells)
     if bundle.kind == "wp_story":
         assert bundle.story and bundle.story.key_plays
 
 
-def test_captions_survive_refresh(ctx, out_dirs):
+def test_captions_survive_refresh(make_ctx, out_dirs):
+    ctx = make_ctx("nfl")
     cdef = next(d for d in _defs() if d.spec.slug == "kickoff-return-rate")
     first = registry.build(cdef, ctx)
     first.social = Social(hook="hand-written", reviewed=True)
@@ -43,9 +47,9 @@ def test_captions_survive_refresh(ctx, out_dirs):
     assert second.social.hook == "hand-written" and second.social.reviewed
 
 
-def test_registry_lists_every_bundle(ctx, out_dirs):
+def test_registry_lists_every_bundle(make_ctx, out_dirs):
     for cdef in _defs():
-        registry.write_bundle(registry.build(cdef, ctx))
+        registry.write_bundle(registry.build(cdef, make_ctx(cdef.spec.league)))
     path = registry.write_registry()
     reg = Registry.model_validate_json(path.read_text(encoding="utf-8"))
     assert {e.id for e in reg.charts} == {d.spec.id for d in _defs()}
