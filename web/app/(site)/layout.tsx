@@ -27,7 +27,6 @@ export default function SiteLayout({ children }: { children: React.ReactNode }) 
             Every chart is built from public play-by-play data and names its source. Numbers refresh nightly in
             season.
           </span>
-          <a href="https://github.com/acouch44/SportsTrends">Code and data on GitHub</a>
         </div>
       </footer>
     </>
