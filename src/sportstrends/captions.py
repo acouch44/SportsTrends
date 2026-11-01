@@ -113,7 +113,7 @@ def run(bundle_paths: list[Path], *, force: bool = False) -> int:
         if caps is None:
             continue
         b.social = Social(**caps.model_dump(), reviewed=False, generated_for=b.data_through)
-        path.write_text(b.model_dump_json(exclude_none=True) + "\n", encoding="utf-8")
+        path.write_text(b.model_dump_json(exclude_none=True) + "\n", encoding="utf-8", newline="\n")
         log.info("%s: captions drafted (hook: %s)", b.id, b.social.hook)
         n += 1
     return n

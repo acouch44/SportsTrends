@@ -93,7 +93,11 @@ def now_iso() -> str:
 def code_version() -> str:
     try:
         out = subprocess.run(
-            ["git", "rev-parse", "--short", "HEAD"], cwd=ROOT, capture_output=True, text=True, timeout=5
+            ["git", "log", "-1", "--format=%h", "--", "src", "pyproject.toml"],
+            cwd=ROOT,
+            capture_output=True,
+            text=True,
+            timeout=5,
         )
         return out.stdout.strip() or "dev"
     except (OSError, subprocess.SubprocessError):
@@ -133,13 +137,19 @@ def build(cdef: ChartDef, ctx: Context) -> ChartBundle:
     bundle = ChartBundle(**kwargs, **fields)
     if not bundle.summary:
         bundle.summary = summarize(bundle)
+    if previous is not None and _same_content(previous, bundle):
+        bundle.generated_at = previous.generated_at  # nothing changed: no nightly churn
     return bundle
+
+
+def _same_content(a: ChartBundle, b: ChartBundle) -> bool:
+    return a.model_dump(exclude={"generated_at"}) == b.model_dump(exclude={"generated_at"})
 
 
 def write_bundle(bundle: ChartBundle) -> Path:
     path = bundle_path(bundle.id)
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(bundle.model_dump_json(exclude_none=True) + "\n", encoding="utf-8")
+    path.write_text(bundle.model_dump_json(exclude_none=True) + "\n", encoding="utf-8", newline="\n")
     return path
 
 
@@ -164,15 +174,22 @@ def write_registry() -> Path:
             )
         )
     entries.sort(key=lambda e: (e.league, e.title))
-    reg = Registry(generated_at=now_iso(), charts=entries)
+    stamp = now_iso()
+    if REGISTRY_PATH.exists():
+        prev = Registry.model_validate_json(REGISTRY_PATH.read_text(encoding="utf-8"))
+        if prev.charts == entries:
+            stamp = prev.generated_at
+    reg = Registry(generated_at=stamp, charts=entries)
     REGISTRY_PATH.parent.mkdir(parents=True, exist_ok=True)
-    REGISTRY_PATH.write_text(reg.model_dump_json(indent=2) + "\n", encoding="utf-8")
+    REGISTRY_PATH.write_text(reg.model_dump_json(indent=2) + "\n", encoding="utf-8", newline="\n")
     return REGISTRY_PATH
 
 
 def write_schema(path: Path) -> Path:
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(ChartBundle.model_json_schema(), indent=2) + "\n", encoding="utf-8")
+    path.write_text(
+        json.dumps(ChartBundle.model_json_schema(), indent=2) + "\n", encoding="utf-8", newline="\n"
+    )
     return path
 
 
