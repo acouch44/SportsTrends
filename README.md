@@ -4,8 +4,8 @@ Shareable sports data visualizations: multi-decade league trends (run vs pass, t
 return's comeback, the 4th-down revolution) down to the wildest game of the week, starting with
 the NFL and built to take the NBA, NHL and MLB next.
 
-Every chart has its own link with a rich preview image, one-click PNG downloads sized for
-LinkedIn, Instagram and TikTok/Reels, draft captions per platform, and a data-table twin.
+Every chart has its own link with a preview image sized for LinkedIn, Facebook, X and Slack,
+draft captions per platform, and a data-table twin.
 
 ```
 Python pipeline (src/sportstrends)                      Next.js static site (web/)
