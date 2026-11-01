@@ -88,7 +88,13 @@ jobs:
             echo "changed=false" >> "$GITHUB_OUTPUT"
           else
             git commit -m "data: nightly refresh $(date -u +%Y-%m-%d)"
-            git push
+            # someone may have pushed while this ran: replay our data commit on top (keeping our
+            # freshly built files if the same ones changed upstream) and try again
+            for attempt in 1 2 3; do
+              git push && break
+              git pull --rebase -X theirs origin main || exit 1
+              [ "$attempt" = 3 ] && exit 1
+            done
             echo "changed=true" >> "$GITHUB_OUTPUT"
           fi
 
