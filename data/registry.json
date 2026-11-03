@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-02T20:27:35Z",
+  "generated_at": "2026-11-03T17:57:37Z",
   "charts": [
     {
       "id": "nba/three-pointers-race",
@@ -9,14 +9,14 @@
       "kind": "race",
       "title": "The three-point race, 1996-97 to today",
       "subtitle": "Cumulative regular-season threes made since 1996-97, top 12 after each season",
-      "hook": "Stephen Curry has made 4,270 regular-season threes since 1996-97, more than anyone else over that span (through 2026-27).",
+      "hook": "Stephen Curry has made 4,275 regular-season threes since 1996-97, more than anyone else over that span (through 2026-27).",
       "tags": [
         "race",
         "three-point",
         "records"
       ],
-      "data_through": "2026-11-02",
-      "generated_at": "2026-11-02T20:27:34Z"
+      "data_through": "2026-11-03",
+      "generated_at": "2026-11-03T17:57:36Z"
     },
     {
       "id": "nba/three-point-rate",
@@ -31,8 +31,8 @@
         "three-point",
         "shooting"
       ],
-      "data_through": "2026-11-02",
-      "generated_at": "2026-11-02T20:27:33Z"
+      "data_through": "2026-11-03",
+      "generated_at": "2026-11-03T17:57:36Z"
     },
     {
       "id": "nba/shot-chart-shift",
@@ -48,8 +48,8 @@
         "midrange",
         "three-point"
       ],
-      "data_through": "2026-11-02",
-      "generated_at": "2026-11-02T20:27:33Z"
+      "data_through": "2026-11-03",
+      "generated_at": "2026-11-03T17:57:36Z"
     },
     {
       "id": "nfl/fourth-down-go-rate",
@@ -64,8 +64,8 @@
         "analytics",
         "fourth-down"
       ],
-      "data_through": "2026-11-01",
-      "generated_at": "2026-11-02T20:27:34Z"
+      "data_through": "2026-11-02",
+      "generated_at": "2026-11-03T17:57:36Z"
     },
     {
       "id": "nfl/pass-rate-era",
@@ -80,8 +80,8 @@
         "offense",
         "run-vs-pass"
       ],
-      "data_through": "2026-11-01",
-      "generated_at": "2026-11-02T20:27:34Z"
+      "data_through": "2026-11-02",
+      "generated_at": "2026-11-03T17:57:36Z"
     },
     {
       "id": "nfl/kickoff-return-rate",
@@ -96,8 +96,8 @@
         "special-teams",
         "rule-change"
       ],
-      "data_through": "2026-11-01",
-      "generated_at": "2026-11-02T20:27:34Z"
+      "data_through": "2026-11-02",
+      "generated_at": "2026-11-03T17:57:36Z"
     },
     {
       "id": "nfl/passing-yards-race",
@@ -112,8 +112,8 @@
         "quarterbacks",
         "records"
       ],
-      "data_through": "2026-11-01",
-      "generated_at": "2026-11-02T20:27:34Z"
+      "data_through": "2026-11-02",
+      "generated_at": "2026-11-03T17:57:36Z"
     },
     {
       "id": "nfl/wp-rollercoaster",
@@ -121,15 +121,15 @@
       "slug": "wp-rollercoaster",
       "kind": "wp_story",
       "title": "Win-probability rollercoaster of the week",
-      "subtitle": "Week 7, 2026: Cleveland Browns at Tennessee Titans (2026-10-25). Final CLE 27 - TEN 24.",
-      "hook": "Week 7: Tennessee Titans had a 77% chance of winning in the first quarter and lost. Final CLE 27 - TEN 24.",
+      "subtitle": "Week 8, 2026: Tennessee Titans at Cincinnati Bengals (2026-11-01). Final TEN 36 - CIN 43.",
+      "hook": "Week 8: Cincinnati Bengals were down to a 21% chance of winning in the fourth quarter and won anyway. Final TEN 36 - CIN 43.",
       "tags": [
         "game",
         "win-probability",
         "weekly"
       ],
-      "data_through": "2026-10-25",
-      "generated_at": "2026-11-01T10:58:52Z"
+      "data_through": "2026-11-01",
+      "generated_at": "2026-11-03T17:57:37Z"
     }
   ]
 }
