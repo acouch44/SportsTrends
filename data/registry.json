@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-08T16:45:17Z",
+  "generated_at": "2026-11-09T20:54:30Z",
   "charts": [
     {
       "id": "nba/three-pointers-race",
@@ -15,8 +15,8 @@
         "three-point",
         "records"
       ],
-      "data_through": "2026-11-08",
-      "generated_at": "2026-11-08T16:45:16Z"
+      "data_through": "2026-11-09",
+      "generated_at": "2026-11-09T20:54:29Z"
     },
     {
       "id": "nba/three-point-rate",
@@ -31,8 +31,8 @@
         "three-point",
         "shooting"
       ],
-      "data_through": "2026-11-08",
-      "generated_at": "2026-11-08T16:45:16Z"
+      "data_through": "2026-11-09",
+      "generated_at": "2026-11-09T20:54:29Z"
     },
     {
       "id": "nba/shot-chart-shift",
@@ -48,8 +48,8 @@
         "midrange",
         "three-point"
       ],
-      "data_through": "2026-11-08",
-      "generated_at": "2026-11-08T16:45:16Z"
+      "data_through": "2026-11-09",
+      "generated_at": "2026-11-09T20:54:29Z"
     },
     {
       "id": "nfl/fourth-down-go-rate",
@@ -58,14 +58,14 @@
       "kind": "line",
       "title": "Going for it on 4th-and-short",
       "subtitle": "Share of 4th-and-1 or 2 plays where the offense went for it instead of kicking. Quarters 1-3, score within one possession, regular season",
-      "hook": "In 1999, teams went for it on close-game 4th-and-short 22% of the time. In 2026: 56%. On their own side of midfield it went from 2% to 27%.",
+      "hook": "In 1999, teams went for it on close-game 4th-and-short 22% of the time. In 2026: 55%. On their own side of midfield it went from 2% to 26%.",
       "tags": [
         "trend",
         "analytics",
         "fourth-down"
       ],
-      "data_through": "2026-11-05",
-      "generated_at": "2026-11-06T17:37:16Z"
+      "data_through": "2026-11-08",
+      "generated_at": "2026-11-09T20:54:29Z"
     },
     {
       "id": "nfl/pass-rate-era",
@@ -80,8 +80,8 @@
         "offense",
         "run-vs-pass"
       ],
-      "data_through": "2026-11-05",
-      "generated_at": "2026-11-06T17:37:16Z"
+      "data_through": "2026-11-08",
+      "generated_at": "2026-11-09T20:54:30Z"
     },
     {
       "id": "nfl/kickoff-return-rate",
@@ -96,8 +96,8 @@
         "special-teams",
         "rule-change"
       ],
-      "data_through": "2026-11-05",
-      "generated_at": "2026-11-06T17:37:16Z"
+      "data_through": "2026-11-08",
+      "generated_at": "2026-11-09T20:54:30Z"
     },
     {
       "id": "nfl/passing-yards-race",
@@ -112,8 +112,8 @@
         "quarterbacks",
         "records"
       ],
-      "data_through": "2026-11-05",
-      "generated_at": "2026-11-06T17:37:17Z"
+      "data_through": "2026-11-08",
+      "generated_at": "2026-11-09T20:54:30Z"
     },
     {
       "id": "nfl/wp-rollercoaster",
