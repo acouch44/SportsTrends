@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-12T18:29:38Z",
+  "generated_at": "2026-11-13T17:56:43Z",
   "charts": [
     {
       "id": "nba/three-pointers-race",
@@ -64,8 +64,8 @@
         "analytics",
         "fourth-down"
       ],
-      "data_through": "2026-11-09",
-      "generated_at": "2026-11-10T18:03:06Z"
+      "data_through": "2026-11-12",
+      "generated_at": "2026-11-13T17:56:43Z"
     },
     {
       "id": "nfl/pass-rate-era",
@@ -74,14 +74,14 @@
       "kind": "line",
       "title": "Run vs. pass: how often the NFL drops back",
       "subtitle": "Share of offensive plays that were dropbacks (passes, sacks, scrambles), regular season",
-      "hook": "On early downs with the game in doubt, offenses dropped back 52% of the time in 1999. In 2026 it is 53%; the peak was 55% in 2020.",
+      "hook": "On early downs with the game in doubt, offenses dropped back 52% of the time in 1999. In 2026 it is 54%; the peak was 55% in 2020.",
       "tags": [
         "trend",
         "offense",
         "run-vs-pass"
       ],
-      "data_through": "2026-11-09",
-      "generated_at": "2026-11-10T18:03:06Z"
+      "data_through": "2026-11-12",
+      "generated_at": "2026-11-13T17:56:43Z"
     },
     {
       "id": "nfl/kickoff-return-rate",
@@ -96,8 +96,8 @@
         "special-teams",
         "rule-change"
       ],
-      "data_through": "2026-11-09",
-      "generated_at": "2026-11-10T18:03:06Z"
+      "data_through": "2026-11-12",
+      "generated_at": "2026-11-13T17:56:43Z"
     },
     {
       "id": "nfl/passing-yards-race",
@@ -112,8 +112,8 @@
         "quarterbacks",
         "records"
       ],
-      "data_through": "2026-11-09",
-      "generated_at": "2026-11-10T18:03:06Z"
+      "data_through": "2026-11-12",
+      "generated_at": "2026-11-13T17:56:43Z"
     },
     {
       "id": "nfl/wp-rollercoaster",
