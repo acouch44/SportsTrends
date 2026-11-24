@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-23T22:08:10Z",
+  "generated_at": "2026-11-24T20:45:03Z",
   "charts": [
     {
       "id": "nba/three-pointers-race",
@@ -15,8 +15,8 @@
         "three-point",
         "records"
       ],
-      "data_through": "2026-11-23",
-      "generated_at": "2026-11-23T22:08:09Z"
+      "data_through": "2026-11-24",
+      "generated_at": "2026-11-24T20:45:02Z"
     },
     {
       "id": "nba/three-point-rate",
@@ -31,8 +31,8 @@
         "three-point",
         "shooting"
       ],
-      "data_through": "2026-11-23",
-      "generated_at": "2026-11-23T22:08:09Z"
+      "data_through": "2026-11-24",
+      "generated_at": "2026-11-24T20:45:02Z"
     },
     {
       "id": "nba/shot-chart-shift",
@@ -48,8 +48,8 @@
         "midrange",
         "three-point"
       ],
-      "data_through": "2026-11-23",
-      "generated_at": "2026-11-23T22:08:09Z"
+      "data_through": "2026-11-24",
+      "generated_at": "2026-11-24T20:45:02Z"
     },
     {
       "id": "nfl/fourth-down-go-rate",
@@ -64,8 +64,8 @@
         "analytics",
         "fourth-down"
       ],
-      "data_through": "2026-11-22",
-      "generated_at": "2026-11-23T22:08:10Z"
+      "data_through": "2026-11-23",
+      "generated_at": "2026-11-24T20:45:03Z"
     },
     {
       "id": "nfl/pass-rate-era",
@@ -80,8 +80,8 @@
         "offense",
         "run-vs-pass"
       ],
-      "data_through": "2026-11-22",
-      "generated_at": "2026-11-23T22:08:10Z"
+      "data_through": "2026-11-23",
+      "generated_at": "2026-11-24T20:45:03Z"
     },
     {
       "id": "nfl/kickoff-return-rate",
@@ -96,8 +96,8 @@
         "special-teams",
         "rule-change"
       ],
-      "data_through": "2026-11-22",
-      "generated_at": "2026-11-23T22:08:10Z"
+      "data_through": "2026-11-23",
+      "generated_at": "2026-11-24T20:45:03Z"
     },
     {
       "id": "nfl/passing-yards-race",
@@ -112,8 +112,8 @@
         "quarterbacks",
         "records"
       ],
-      "data_through": "2026-11-22",
-      "generated_at": "2026-11-23T22:08:10Z"
+      "data_through": "2026-11-23",
+      "generated_at": "2026-11-24T20:45:03Z"
     },
     {
       "id": "nfl/wp-rollercoaster",
@@ -121,15 +121,15 @@
       "slug": "wp-rollercoaster",
       "kind": "wp_story",
       "title": "Win-probability rollercoaster of the week",
-      "subtitle": "Week 10, 2026: Washington Commanders at New York Giants (2026-11-12). Final WAS 24 - NYG 21.",
-      "hook": "Week 10: New York Giants had a 94% chance of winning in the fourth quarter and lost. Final WAS 24 - NYG 21.",
+      "subtitle": "Week 11, 2026: Baltimore Ravens at Carolina Panthers (2026-11-22). Final BAL 33 - CAR 35.",
+      "hook": "Week 11: Carolina Panthers were down to a 23% chance of winning in the first quarter and won anyway. Final BAL 33 - CAR 35.",
       "tags": [
         "game",
         "win-probability",
         "weekly"
       ],
-      "data_through": "2026-11-12",
-      "generated_at": "2026-11-17T19:16:00Z"
+      "data_through": "2026-11-22",
+      "generated_at": "2026-11-24T20:45:03Z"
     }
   ]
 }
